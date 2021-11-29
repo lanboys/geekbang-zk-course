@@ -14,6 +14,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * Echoes back any received data from a client.
  */
 public final class EchoServer {
+
   static final int PORT = Integer.parseInt(System.getProperty("port", "8007"));
 
   public static void main(String[] args) throws Exception {

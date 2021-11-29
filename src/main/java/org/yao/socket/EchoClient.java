@@ -11,6 +11,7 @@ import java.net.Socket;
  * </pre>
  */
 public class EchoClient {
+
   public static void main(String[] args) throws Exception {
     if (args.length != 2) {
       System.err.println("Usage: java EchoClient <ip> <port number>");
@@ -21,9 +22,9 @@ public class EchoClient {
     int port = Integer.parseInt(args[1]);
 
     try (Socket socket = new Socket(ip, port);
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in))) {
+         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in))) {
       String msg;
       while ((msg = stdin.readLine()) != null) {
         out.println(msg);

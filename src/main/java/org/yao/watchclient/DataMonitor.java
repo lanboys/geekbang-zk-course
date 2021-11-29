@@ -4,17 +4,19 @@ package org.yao.watchclient;
  * A simple class that monitors the data and existence of a ZooKeeper node. It uses asynchronous
  * ZooKeeper APIs.
  */
-import java.util.Arrays;
 
+import org.apache.zookeeper.AsyncCallback.StatCallback;
 import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
-import org.apache.zookeeper.AsyncCallback.StatCallback;
-import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.data.Stat;
 
+import java.util.Arrays;
+
 public class DataMonitor implements StatCallback {
+
   private ZooKeeper zk;
   private String znode;
   boolean dead;
@@ -96,9 +98,14 @@ public class DataMonitor implements StatCallback {
     }
   }
 
-  /** Other classes use the DataMonitor by implementing this method */
+  /**
+   * Other classes use the DataMonitor by implementing this method
+   */
   public interface DataMonitorListener {
-    /** The existence status of the node has changed. */
+
+    /**
+     * The existence status of the node has changed.
+     */
     void exists(byte data[]);
 
     /**

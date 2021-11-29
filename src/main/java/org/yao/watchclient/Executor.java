@@ -6,18 +6,20 @@ package org.yao.watchclient;
  * filesystem. It also starts the specified program with the specified arguments when the znode
  * exists and kills the program if the znode goes away.
  */
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListener {
+
   private String znode;
   private DataMonitor dm;
   private ZooKeeper zk;
@@ -33,7 +35,9 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
     dm = new DataMonitor(zk, znode, this);
   }
 
-  /** @param args */
+  /**
+   * @param args
+   */
   public static void main(String[] args) {
     if (args.length < 4) {
       System.err.println("USAGE: Executor hostPort znode pathname program [args ...]");
@@ -120,6 +124,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
   }
 
   static class StreamWriter extends Thread {
+
     OutputStream os;
 
     InputStream is;

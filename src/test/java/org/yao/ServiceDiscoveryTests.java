@@ -13,9 +13,12 @@ import org.junit.Test;
 import static com.google.common.truth.Truth.assertThat;
 
 public class ServiceDiscoveryTests {
+
   private String connectString = "localhost:2181";
 
-  /** Shows the basic usage for curator-x-discovery. */
+  /**
+   * Shows the basic usage for curator-x-discovery.
+   */
   @Test
   public void testBasics() throws Exception {
     CuratorFramework client = null;

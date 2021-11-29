@@ -1,6 +1,7 @@
 package org.yao.jute;
 
 import com.google.common.base.MoreObjects;
+
 import org.apache.jute.BinaryInputArchive;
 import org.apache.jute.BinaryOutputArchive;
 import org.apache.jute.Index;
@@ -18,8 +19,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TreeMap;
 
-/** BinaryOutputArchive and BinaryInputArchive ignore the <tt>tag</tt> argument in all methods. */
+/**
+ * BinaryOutputArchive and BinaryInputArchive ignore the <tt>tag</tt> argument in all methods.
+ */
 public class JuteTests {
+
   private String pathname = "jute-data";
 
   @Test
@@ -30,7 +34,7 @@ public class JuteTests {
   }
 
   private void serialize() throws Exception {
-    try (OutputStream os = new FileOutputStream(new File(pathname)); ) {
+    try (OutputStream os = new FileOutputStream(new File(pathname));) {
       BinaryOutputArchive oa = BinaryOutputArchive.getArchive(os);
 
       // Primitive types
@@ -59,7 +63,7 @@ public class JuteTests {
   }
 
   private void deserialize() throws Exception {
-    try (FileInputStream is = new FileInputStream(new File(pathname)); ) {
+    try (FileInputStream is = new FileInputStream(new File(pathname));) {
       BinaryInputArchive ia = BinaryInputArchive.getArchive(is);
       System.out.printf("boolean: %b\n", ia.readBool("boolean"));
       System.out.printf("int: %d\n", ia.readInt("int"));
@@ -82,10 +86,12 @@ public class JuteTests {
 }
 
 class Student implements Record {
+
   private int grade;
   private String name;
 
-  public Student() {}
+  public Student() {
+  }
 
   public Student(int grade, String name) {
     this.grade = grade;

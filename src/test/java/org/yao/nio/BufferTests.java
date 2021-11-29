@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import static com.google.common.truth.Truth.assertThat;
 
 public class BufferTests {
+
   private int CAP = 10;
   private ByteBuffer buf;
   private byte[] chars = {'h', 'e', 'l', 'l', 'o'};

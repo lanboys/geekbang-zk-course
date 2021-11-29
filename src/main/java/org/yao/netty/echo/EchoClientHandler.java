@@ -13,7 +13,9 @@ public class EchoClientHandler extends ChannelInboundHandlerAdapter {
 
   private final ByteBuf firstMessage;
 
-  /** Creates a client-side handler. */
+  /**
+   * Creates a client-side handler.
+   */
   public EchoClientHandler() {
     firstMessage = Unpooled.buffer(11);
     for (int i = 0; i < firstMessage.capacity() - 1; i++) {

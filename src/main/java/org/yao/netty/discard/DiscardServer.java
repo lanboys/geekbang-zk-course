@@ -10,6 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class DiscardServer {
+
   private int port;
 
   public DiscardServer(int port) {
@@ -26,7 +27,7 @@ public class DiscardServer {
           .channel(NioServerSocketChannel.class)
           .childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
-            public void initChannel(SocketChannel ch)  {
+            public void initChannel(SocketChannel ch) {
               ch.pipeline().addLast(new DiscardServerHandler());
             }
           })

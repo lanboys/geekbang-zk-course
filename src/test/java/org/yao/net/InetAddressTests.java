@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.net.InetAddress;
 
-
 import static com.google.common.truth.Truth.assertThat;
 
 public class InetAddressTests {
@@ -32,13 +31,14 @@ public class InetAddressTests {
     // Output:
     //   www.baidu.com/61.135.169.121
     //   www.baidu.com/61.135.169.125
-    for (InetAddress addr : addrs) System.out.println(addr);
+    for (InetAddress addr : addrs)
+      System.out.println(addr);
   }
 
   @Test
   public void testGetAddress() throws Exception {
     InetAddress addr = InetAddress.getByName("192.168.1.9");
-    byte[] expected = {(byte)192, (byte)168, 1, 9};
+    byte[] expected = {(byte) 192, (byte) 168, 1, 9};
     assertThat(addr.getAddress()).isEqualTo(expected);
   }
 }

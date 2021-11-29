@@ -1,6 +1,5 @@
 package org.yao;
 
-import com.google.common.io.Closeables;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
@@ -9,13 +8,14 @@ import org.apache.curator.retry.RetryOneTime;
 import org.apache.curator.utils.CloseableUtils;
 import org.junit.Test;
 
-import static com.google.common.truth.Truth.assertThat;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import static com.google.common.truth.Truth.assertThat;
+
 public class PathChildrenCacheTests {
+
   private String connectString = "localhost:2181";
 
   @Test
@@ -71,7 +71,6 @@ public class PathChildrenCacheTests {
             .isEqualTo(PathChildrenCacheEvent.Type.CHILD_REMOVED);
 
         client.delete().deletingChildrenIfNeeded().forPath(basePath);
-
       } finally {
         CloseableUtils.closeQuietly(cache);
         CloseableUtils.closeQuietly(client);

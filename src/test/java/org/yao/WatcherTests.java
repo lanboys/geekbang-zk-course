@@ -14,12 +14,13 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Example code to show how ZooKeeper watchers work. These test cases should run separately. And
  * they need to be driven by zkCli.sh. Check the test case comment for details.
- *
+ * <p>
  * Watches registered by <tt>exists</tt> and <tt>getData</tt> only monitor changes related to znode
  * itself. Wathess registered by <tt>getChildren</tt> only monitor changes related to the znode's
  * children (not descendants).
  */
 public class WatcherTests {
+
   private ZooKeeper zk;
   private volatile CountDownLatch closeLatch;
 
@@ -74,7 +75,9 @@ public class WatcherTests {
     zk.close();
   }
 
-  /** Two default watchers are set, but at most one get triggered. */
+  /**
+   * Two default watchers are set, but at most one get triggered.
+   */
   @Test
   public void testGlobalWatcherAtMostTriggerOnce() throws Exception {
     String path = "/three";
@@ -94,7 +97,9 @@ public class WatcherTests {
     zk.close();
   }
 
-  /** Two explicit watchers are set, but at most one get triggered. */
+  /**
+   * Two explicit watchers are set, but at most one get triggered.
+   */
   @Test
   public void testExplicitWatcherAtMostTriggerOnce() throws Exception {
     String path = "/four";
@@ -139,8 +144,11 @@ public class WatcherTests {
   }
 }
 
-/** Default watcher. */
+/**
+ * Default watcher.
+ */
 class DefaultWatcher implements Watcher {
+
   private CountDownLatch startLatch = new CountDownLatch(1);
   private WatcherTests tests;
 
@@ -166,8 +174,11 @@ class DefaultWatcher implements Watcher {
   }
 }
 
-/** Watcher for exists method. */
+/**
+ * Watcher for exists method.
+ */
 class ExistsWatcher implements Watcher {
+
   private WatcherTests tests;
 
   public ExistsWatcher(WatcherTests tests) {

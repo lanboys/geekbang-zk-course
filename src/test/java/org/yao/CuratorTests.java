@@ -20,6 +20,7 @@ import static com.google.common.truth.Truth.assertThat;
  * Example code to demonstrate the usage of Curator client and framework.
  */
 public class CuratorTests {
+
   private CuratorFramework client;
   private String connectString = "localhost:2181";
   private RetryPolicy retryPolicy;
@@ -61,7 +62,6 @@ public class CuratorTests {
 
     client.close();
   }
-
 
   // create -> getData -> delete in asynchronous mode
   @Test

@@ -1,7 +1,5 @@
 package org.yao.socket;
 
-import com.google.common.io.Closeables;
-
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -17,6 +15,7 @@ import java.net.Socket;
  * </pre>
  */
 public class EchoServer {
+
   public static void main(String[] args) throws IOException {
     if (args.length != 1) {
       System.err.println("Usage: java EchoServer <port number>");

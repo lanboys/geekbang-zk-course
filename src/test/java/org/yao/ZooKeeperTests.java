@@ -1,6 +1,7 @@
 package org.yao;
 
 import com.google.common.collect.ImmutableList;
+
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
@@ -23,6 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.google.common.truth.Truth.assertThat;
 
 public class ZooKeeperTests {
+
   private String pathPrefix = "/single";
   private String multiPathPrefix = "/multi";
   private ZooKeeper zk;
@@ -54,11 +56,13 @@ public class ZooKeeperTests {
     zk.close();
   }
 
-  /** getChildren does not list descendants recursively. */
+  /**
+   * getChildren does not list descendants recursively.
+   */
   @Test
   public void testGetChilren() throws Exception {
     String path = pathPrefix + "-get-children";
-    zk.create(path, new byte[]{'a'} ,ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+    zk.create(path, new byte[]{'a'}, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
     List<String> paths = zk.getChildren(path, false);
     System.out.printf("child paths: %s\n", paths);
     zk.delete(path, -1);
@@ -77,7 +81,7 @@ public class ZooKeeperTests {
     String path = multiPathPrefix + "-set";
     byte[] dataV0 = {'o'};
 
-    for (int version : new int[] {-2, -1, 0}) {
+    for (int version : new int[]{-2, -1, 0}) {
       System.out.printf("setting data for version %d...\n", version);
       boolean exceptionThrown = false;
       try {
@@ -93,7 +97,7 @@ public class ZooKeeperTests {
         .isEqualTo(path);
     System.out.printf("znode created\n");
 
-    for (int version : new int[] {-2, 1}) {
+    for (int version : new int[]{-2, 1}) {
       System.out.printf("setting data for version %d...\n", version);
       boolean exceptionThrown = false;
       try {
@@ -316,7 +320,7 @@ public class ZooKeeperTests {
     }
 
     assertThat(exceptionThrown).isTrue();
-    zk.create(checkPath, new byte[] {'a'}, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+    zk.create(checkPath, new byte[]{'a'}, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
     try {
       Transaction checkTx = zk.transaction();
@@ -328,7 +332,9 @@ public class ZooKeeperTests {
     }
     zk.delete(checkPath, -1);
   }
+
   class DefaultWatcher implements Watcher {
+
     @Override
     public void process(WatchedEvent event) {
       if (event.getType() == Event.EventType.None
